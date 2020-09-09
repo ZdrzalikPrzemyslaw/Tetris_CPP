@@ -5,7 +5,7 @@
 #include "Figures/Figure_S.h"
 
 
-Figure_S::Figure_S() {
+Figure_S::Figure_S() : Figure() {
     this->shape = baseShape;
 }
 

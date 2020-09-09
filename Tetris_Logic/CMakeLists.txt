@@ -1,7 +1,7 @@
 project(TetrisLogicLib)
 
 set(SOURCE_FILES
-        headers/Board.h src/Board.cpp headers/Figures/Figure.h src/Field.cpp headers/Field.h src/Figures/Figure.cpp src/Figures/Custom_Figure.cpp headers/Figures/Custom_Figure.h src/Figures/Figure_I.cpp headers/Figures/Figure_I.h src/Figures/Figure_O.cpp headers/Figures/Figure_O.h src/Figures/Figure_T.cpp headers/Figures/Figure_T.h src/Figures/Figure_S.cpp headers/Figures/Figure_S.h)
+        headers/Board.h src/Board.cpp headers/Figures/Figure.h src/Field.cpp headers/Field.h src/Figures/Figure.cpp src/Figures/Custom_Figure.cpp headers/Figures/Custom_Figure.h src/Figures/Figure_I.cpp headers/Figures/Figure_I.h src/Figures/Figure_O.cpp headers/Figures/Figure_O.h src/Figures/Figure_T.cpp headers/Figures/Figure_T.h src/Figures/Figure_S.cpp headers/Figures/Figure_S.h src/Figures/Figure_Z.cpp headers/Figures/Figure_Z.h)
 
 set(SOURCE_TEST_FILES
         test/master.cpp test/Example_Test.cpp test/Figures_Test.cpp)
