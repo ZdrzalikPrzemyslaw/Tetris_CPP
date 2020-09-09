@@ -7,6 +7,8 @@
 #include <Figures/Figure_J.h>
 #include "Figures/Custom_Figure.h"
 
+// https://strategywiki.org/wiki/Tetris/Rotation_systems
+
 BOOST_AUTO_TEST_SUITE(Figures_Test)
     std::vector<std::vector<Field *>> custom_original = {
             {new Field(true),  new Field(false), new Field(true),  new Field(false)},
