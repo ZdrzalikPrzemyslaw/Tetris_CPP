@@ -19,3 +19,12 @@ Field::~Field() {
 void Field::setIsTaken(bool isTaken) {
     this->is_taken = isTaken;
 }
+
+
+std::string Field::toString() {
+    return this->is_taken ? "1" : "0";
+}
+
+Field::Field(bool isTaken) {
+    this->is_taken = isTaken;
+}

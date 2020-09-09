@@ -6,6 +6,8 @@
 #define TETRIS_FIELD_H
 
 
+#include <string>
+
 class Field {
 private:
     bool is_taken;
@@ -14,7 +16,9 @@ public:
 public:
     bool isTaken() const;
     Field();
+    Field(bool isTaken);
     ~Field();
+    std::string toString();
 
 };
 

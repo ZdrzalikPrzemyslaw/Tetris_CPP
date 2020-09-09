@@ -1,10 +1,10 @@
 project(TetrisLogicLib)
 
 set(SOURCE_FILES
-        headers/Board.h src/Board.cpp headers/Figures/Figure.h src/Field.cpp headers/Field.h src/Figures/Figure.cpp)
+        headers/Board.h src/Board.cpp headers/Figures/Figure.h src/Field.cpp headers/Field.h src/Figures/Figure.cpp src/Figures/Custom_Figure.cpp headers/Figures/Custom_Figure.h)
 
 set(SOURCE_TEST_FILES
-        test/master.cpp test/Example_Test.cpp)
+        test/master.cpp test/Example_Test.cpp test/Figures_Test.cpp)
 
 find_package (Boost 1.60.0 COMPONENTS "unit_test_framework" REQUIRED)
 

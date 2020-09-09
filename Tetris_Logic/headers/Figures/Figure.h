@@ -5,16 +5,18 @@
 #ifndef TETRIS_FIGURE_H
 #define TETRIS_FIGURE_H
 
+#include <memory>
 #include "vector"
 #include "Field.h"
 
 class Figure {
 public:
     void rotate();
-private:
     static const int FIGURE_SIZE = 4;
 protected:
-    Field shape[FIGURE_SIZE][FIGURE_SIZE];
+    std::vector<std::vector<std::shared_ptr<Field>>> shape;
+public:
+    std::string toString();
 };
 
 
