@@ -35,3 +35,13 @@ std::string Figure::toString() {
     return full_string;
 }
 
+const std::vector<std::vector<std::shared_ptr<Field>>> &Figure::getShape() const {
+    return shape;
+}
+
+std::ostream &operator<<(std::ostream &osm, Figure figure) {
+    osm << figure.toString();
+    return osm;
+}
+
+

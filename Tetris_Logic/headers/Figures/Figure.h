@@ -13,10 +13,12 @@ class Figure {
 public:
     void rotate();
     static const int FIGURE_SIZE = 4;
+    [[nodiscard]] const std::vector<std::vector<std::shared_ptr<Field>>> &getShape() const;
+    std::string toString();
+    friend std::ostream& operator<<(std::ostream& osm, Figure figure);
 protected:
     std::vector<std::vector<std::shared_ptr<Field>>> shape;
-public:
-    std::string toString();
+
 };
 
 
