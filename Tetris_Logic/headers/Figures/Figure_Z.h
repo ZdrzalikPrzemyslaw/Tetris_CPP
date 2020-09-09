@@ -20,9 +20,9 @@ private:
                     std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false))},
             {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false)),
                     std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false))},
-            {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false)),
-                    std::make_shared<Field>(new Field(true)),  std::make_shared<Field>(new Field(false))},
             {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(true)),
+                    std::make_shared<Field>(new Field(true)),  std::make_shared<Field>(new Field(false))},
+            {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false)),
                     std::make_shared<Field>(new Field(true)),  std::make_shared<Field>(new Field(true))}
     };
 };

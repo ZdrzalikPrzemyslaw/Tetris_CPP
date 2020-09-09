@@ -10,21 +10,21 @@
 
 class Figure_J : public Figure {
 public:
-Figure_J();
+    Figure_J();
 
-~Figure_J();
+    ~Figure_J();
 
 private:
-std::vector<std::vector<std::shared_ptr<Field>>> baseShape = {
-        {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false)),
-                std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false))},
-        {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(true)),
-                std::make_shared<Field>(new Field(true)),  std::make_shared<Field>(new Field(false))},
-        {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(true)),
-                std::make_shared<Field>(new Field(true)),  std::make_shared<Field>(new Field(false))},
-        {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false)),
-                std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false))}
-};
+    std::vector<std::vector<std::shared_ptr<Field>>> baseShape = {
+            {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false)),
+                    std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false))},
+            {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false)),
+                    std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false))},
+            {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(true)),
+                    std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false))},
+            {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(true)),
+                    std::make_shared<Field>(new Field(true)), std::make_shared<Field>(new Field(true))}
+    };
 };
 
 
