@@ -8,6 +8,8 @@
 #include <Figures/Figure_L.h>
 #include <Figures/Figure_O.h>
 #include <Figures/Figure_S.h>
+#include <Figures/Figure_T.h>
+#include <Figures/Figure_Z.h>
 #include "Figures/Custom_Figure.h"
 
 // https://strategywiki.org/wiki/Tetris/Rotation_systems
@@ -100,6 +102,32 @@ BOOST_AUTO_TEST_SUITE(Figures_Test)
         Figure figure_S_should_be_rotated = Custom_Figure(rotated_figure_S);
         figure_S->rotate();
         BOOST_REQUIRE_EQUAL(*figure_S, figure_S_should_be_rotated);
+    }
+
+    auto rotated_figure_T = Shape_Generator::get_shape_from_vector(
+            {{0, 1, 0},
+                    {0, 1, 1},
+                    {0, 1, 0,}}
+    );
+
+    BOOST_AUTO_TEST_CASE(Test_Rotate_Figure_T) {
+        Figure *figure_T = new Figure_T();
+        Figure figure_T_should_be_rotated = Custom_Figure(rotated_figure_T);
+        figure_T->rotate();
+        BOOST_REQUIRE_EQUAL(*figure_T, figure_T_should_be_rotated);
+    }
+
+    auto rotated_figure_Z = Shape_Generator::get_shape_from_vector(
+            {{0, 1, 0},
+             {1, 1, 0},
+             {1, 0, 0,}}
+    );
+
+    BOOST_AUTO_TEST_CASE(Test_Rotate_Figure_Z) {
+        Figure *figure_Z = new Figure_Z();
+        Figure figure_Z_should_be_rotated = Custom_Figure(rotated_figure_Z);
+        figure_Z->rotate();
+        BOOST_REQUIRE_EQUAL(*figure_Z, figure_Z_should_be_rotated);
     }
 
 BOOST_AUTO_TEST_SUITE_END()
