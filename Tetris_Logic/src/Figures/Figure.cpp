@@ -44,4 +44,15 @@ std::ostream &operator<<(std::ostream &osm, Figure figure) {
     return osm;
 }
 
+bool operator==(const Figure &lhs, const Figure &rhs) {
+    for (int i = 0; i < Figure::FIGURE_SIZE; i++) {
+        for (int j = 0; j < Figure::FIGURE_SIZE; j++) {
+            if (*lhs.getShape()[i][j] != *rhs.getShape()[i][j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 

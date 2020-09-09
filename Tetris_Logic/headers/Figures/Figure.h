@@ -16,6 +16,7 @@ public:
     [[nodiscard]] const std::vector<std::vector<std::shared_ptr<Field>>> &getShape() const;
     std::string toString();
     friend std::ostream& operator<<(std::ostream& osm, Figure figure);
+    friend bool operator ==(const Figure &lhs, const Figure &rhs);
 protected:
     std::vector<std::vector<std::shared_ptr<Field>>> shape;
 

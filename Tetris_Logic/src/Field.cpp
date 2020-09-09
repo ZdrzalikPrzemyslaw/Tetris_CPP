@@ -28,3 +28,11 @@ std::string Field::toString() {
 Field::Field(bool isTaken) {
     this->is_taken = isTaken;
 }
+
+bool operator==(const Field &lhs, const Field &rhs) {
+    return lhs.isTaken() == rhs.isTaken();
+}
+
+bool operator!=(const Field &lhs, const Field &rhs) {
+    return !(lhs == rhs);
+}
