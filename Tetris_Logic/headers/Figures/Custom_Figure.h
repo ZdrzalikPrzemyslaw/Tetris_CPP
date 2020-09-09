@@ -9,7 +9,7 @@
 
 class Custom_Figure : public Figure {
 public:
-    Custom_Figure(const std::vector<std::vector<Field *>> &shape);
+    Custom_Figure(const std::vector<std::vector<std::shared_ptr<Field>>> &shape);
 };
 
 
