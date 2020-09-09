@@ -18,12 +18,12 @@ private:
     std::vector<std::vector<std::shared_ptr<Field>>> baseShape = {
             {std::make_shared<Field>(false), std::make_shared<Field>(false),
                     std::make_shared<Field>(false), std::make_shared<Field>(false)},
+            {std::make_shared<Field>(false), std::make_shared<Field>(true),
+                    std::make_shared<Field>(false), std::make_shared<Field>(false)},
+            {std::make_shared<Field>(false), std::make_shared<Field>(true),
+                    std::make_shared<Field>(true), std::make_shared<Field>(true)},
             {std::make_shared<Field>(false), std::make_shared<Field>(false),
-                    std::make_shared<Field>(false), std::make_shared<Field>(false)},
-            {std::make_shared<Field>(false), std::make_shared<Field>(true),
-                    std::make_shared<Field>(false), std::make_shared<Field>(false)},
-            {std::make_shared<Field>(false), std::make_shared<Field>(true),
-                    std::make_shared<Field>(true), std::make_shared<Field>(true)}
+                    std::make_shared<Field>(false), std::make_shared<Field>(false)}
     };
 };
 

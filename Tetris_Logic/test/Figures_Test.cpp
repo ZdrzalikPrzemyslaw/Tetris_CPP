@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <Figures/Figure_I.h>
+#include <Figures/Figure_J.h>
 #include "Figures/Custom_Figure.h"
 
 BOOST_AUTO_TEST_SUITE(Figures_Test)
@@ -36,10 +37,24 @@ BOOST_AUTO_TEST_SUITE(Figures_Test)
     };
 
     BOOST_AUTO_TEST_CASE(Test_Rotate_Figure_I) {
-        Figure_I figure_I = Figure_I();
+        Figure *figure_I = new Figure_I();
         Figure figure_I_should_be_rotated = Custom_Figure(rotated_figure_I);
-        figure_I.rotate();
-        BOOST_REQUIRE_EQUAL(figure_I, figure_I_should_be_rotated);
+        figure_I->rotate();
+        BOOST_REQUIRE_EQUAL(*figure_I, figure_I_should_be_rotated);
+    }
+
+    std::vector<std::vector<Field *>> rotated_figure_J = {
+            {new Field(false), new Field(false), new Field(false), new Field(false)},
+            {new Field(false), new Field(true), new Field(true), new Field(false)},
+            {new Field(false), new Field(true), new Field(false), new Field(false)},
+            {new Field(false), new Field(true), new Field(false), new Field(false)}
+    };
+
+    BOOST_AUTO_TEST_CASE(Test_Rotate_Figure_J) {
+        Figure* figure_J = new Figure_J();
+        Figure figure_I_should_be_rotated = Custom_Figure(rotated_figure_J);
+        figure_J->rotate();
+        BOOST_REQUIRE_EQUAL(*figure_J, figure_I_should_be_rotated);
     }
 
 BOOST_AUTO_TEST_SUITE_END()
