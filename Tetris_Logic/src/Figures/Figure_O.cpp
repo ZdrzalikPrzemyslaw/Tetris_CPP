@@ -6,7 +6,6 @@
 
 Figure_O::Figure_O() : Figure() {
     this->shape = baseShape;
-
 }
 
 Figure_O::~Figure_O() {
