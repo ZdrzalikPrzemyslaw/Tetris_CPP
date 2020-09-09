@@ -7,6 +7,7 @@
 #include "Figures/Figure.h"
 
 void Figure::rotate() {
+    int FIGURE_SIZE = this->shape[0].size();
     for (int x = 0; x < FIGURE_SIZE / 2; x++) {
         for (int y = x; y < FIGURE_SIZE - x - 1; y++) {
 
@@ -46,8 +47,9 @@ std::ostream &operator<<(std::ostream &osm, Figure figure) {
 }
 
 bool operator==(const Figure &lhs, const Figure &rhs) {
-    for (int i = 0; i < Figure::FIGURE_SIZE; i++) {
-        for (int j = 0; j < Figure::FIGURE_SIZE; j++) {
+    int FIGURE_SIZE = lhs.getShape().size();
+    for (int i = 0; i < FIGURE_SIZE; i++) {
+        for (int j = 0; j < FIGURE_SIZE; j++) {
             if (*lhs.getShape()[i][j] != *rhs.getShape()[i][j]) {
                 return false;
             }
