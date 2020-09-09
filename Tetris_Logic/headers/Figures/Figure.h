@@ -17,6 +17,8 @@ public:
     std::string toString();
     friend std::ostream& operator<<(std::ostream& osm, Figure figure);
     friend bool operator ==(const Figure &lhs, const Figure &rhs);
+    Figure();
+    ~Figure();
 protected:
     std::vector<std::vector<std::shared_ptr<Field>>> shape;
 

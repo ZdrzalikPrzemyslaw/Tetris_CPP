@@ -55,4 +55,17 @@ bool operator==(const Figure &lhs, const Figure &rhs) {
     return true;
 }
 
+Figure::Figure() {
+    for(int i = 0; i < FIGURE_SIZE; i++) {
+        this->shape.emplace_back();
+        for (int j = 0; j < FIGURE_SIZE; j++) {
+            this->shape.back().push_back(std::make_shared<Field>(new Field(false)));
+        }
+    }
+}
+
+Figure::~Figure() {
+
+}
+
 
