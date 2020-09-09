@@ -21,7 +21,7 @@ void Field::setIsTaken(bool isTaken) {
 }
 
 
-std::string Field::toString() {
+std::string Field::toString() const {
     return this->is_taken ? "1" : "0";
 }
 

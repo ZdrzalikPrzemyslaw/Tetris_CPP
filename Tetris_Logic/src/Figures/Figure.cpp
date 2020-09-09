@@ -71,4 +71,21 @@ Figure::~Figure() {
 
 }
 
+Figure::Figure(Figure const &figure) {
+    for (auto& i : figure.getShape()) {
+        this->shape.emplace_back();
+        for (auto& j : i) {
+            this->shape.back().push_back(std::make_shared<Field>(j->isTaken()));
+        }
+    }
+}
+
+int Figure::getWidth() const {
+    return this->shape.size();
+}
+
+int Figure::getHeight() const {
+    return this->shape[0].size();
+}
+
 

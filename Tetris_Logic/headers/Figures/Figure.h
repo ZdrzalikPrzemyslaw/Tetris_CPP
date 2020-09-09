@@ -17,12 +17,14 @@ public:
     friend std::ostream& operator<<(std::ostream& osm, Figure figure);
     friend bool operator ==(const Figure &lhs, const Figure &rhs);
     Figure();
+    Figure(Figure const &figure);
     ~Figure();
+    int getWidth() const;
+    int getHeight() const;
 protected:
     std::vector<std::vector<std::shared_ptr<Field>>> shape;
 private:
     static const int FIGURE_SIZE = 4;
-
 };
 
 

@@ -18,7 +18,7 @@ public:
     Field();
     Field(bool isTaken);
     ~Field();
-    std::string toString();
+    std::string toString() const;
     friend bool operator ==(const Field &lhs, const Field &rhs);
     friend bool operator !=(const Field &lhs, const Field &rhs);
 

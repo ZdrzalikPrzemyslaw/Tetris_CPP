@@ -19,3 +19,19 @@ Game::~Game() {
 void Game::update() {
 
 }
+
+void Game::render() {
+
+}
+
+void Game::clean() {
+
+}
+
+void Game::handle_events() {
+
+}
+
+bool Game::get_is_running() {
+    return false;
+}
