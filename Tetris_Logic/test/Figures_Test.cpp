@@ -41,7 +41,6 @@ BOOST_AUTO_TEST_SUITE(Figures_Test)
     );
 
     BOOST_AUTO_TEST_CASE(Test_Rotate_Figure_I) {
-
         Figure *figure_I = new Figure_I();
         Figure figure_I_should_be_rotated = Custom_Figure(rotated_figure_I);
         figure_I->rotate();
