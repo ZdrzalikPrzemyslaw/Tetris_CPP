@@ -15,3 +15,7 @@ Game::Game() {
 Game::~Game() {
 
 }
+
+void Game::update() {
+
+}
