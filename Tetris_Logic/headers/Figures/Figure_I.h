@@ -11,6 +11,7 @@
 class Figure_I : public Figure {
 public:
     Figure_I();
+
     ~Figure_I();
 
 private:
@@ -21,8 +22,8 @@ private:
                     std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false))},
             {std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false)),
                     std::make_shared<Field>(new Field(false)), std::make_shared<Field>(new Field(false))},
-            {std::make_shared<Field>(new Field(true)), std::make_shared<Field>(new Field(true)),
-                    std::make_shared<Field>(new Field(true)), std::make_shared<Field>(new Field(true))}
+            {std::make_shared<Field>(new Field(true)),  std::make_shared<Field>(new Field(true)),
+                    std::make_shared<Field>(new Field(true)),  std::make_shared<Field>(new Field(true))}
     };
 };
 

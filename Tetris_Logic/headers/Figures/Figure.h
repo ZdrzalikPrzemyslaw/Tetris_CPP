@@ -6,7 +6,7 @@
 #define TETRIS_FIGURE_H
 
 #include <memory>
-#include "vector"
+#include <vector>
 #include "Field.h"
 
 class Figure {

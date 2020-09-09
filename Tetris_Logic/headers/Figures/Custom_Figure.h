@@ -7,9 +7,9 @@
 
 #include "Figures/Figure.h"
 
-class Custom_Figure : public Figure{
+class Custom_Figure : public Figure {
 public:
-    Custom_Figure(const std::vector<std::vector<Field*>>& shape);
+    Custom_Figure(const std::vector<std::vector<Field *>> &shape);
 };
 
 

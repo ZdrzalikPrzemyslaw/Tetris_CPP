@@ -6,14 +6,14 @@
 #include "Figures/Custom_Figure.h"
 
 BOOST_AUTO_TEST_SUITE(Example_Test)
-    std::vector<std::vector<Field *>> vector_original = {
+    std::vector<std::vector<Field *>> custom_original = {
             {new Field(true),  new Field(false), new Field(true),  new Field(false)},
             {new Field(false), new Field(false), new Field(false), new Field(false)},
             {new Field(false), new Field(false), new Field(false), new Field(false)},
             {new Field(false), new Field(false), new Field(false), new Field(false)}
     };
 
-    std::vector<std::vector<Field *>> vector_rotated = {
+    std::vector<std::vector<Field *>> custom_rotated = {
             {new Field(false), new Field(false), new Field(false), new Field(true)},
             {new Field(false), new Field(false), new Field(false), new Field(false)},
             {new Field(false), new Field(false), new Field(false), new Field(true)},
@@ -21,8 +21,8 @@ BOOST_AUTO_TEST_SUITE(Example_Test)
     };
 
     BOOST_AUTO_TEST_CASE(Test_Rotate) {
-        Figure customFigure = Custom_Figure(vector_original);
-        Figure customFigureShouldBeRotated = Custom_Figure(vector_rotated);
+        Figure customFigure = Custom_Figure(custom_original);
+        Figure customFigureShouldBeRotated = Custom_Figure(custom_rotated);
         customFigure.rotate();
         BOOST_REQUIRE_EQUAL(customFigure, customFigureShouldBeRotated);
     }
