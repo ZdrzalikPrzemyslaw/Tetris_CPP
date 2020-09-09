@@ -7,6 +7,7 @@
 
 
 #include "Figure.h"
+#include "Shape_Generator.h"
 
 class Figure_O : public Figure {
 public:
@@ -15,16 +16,14 @@ public:
     ~Figure_O();
 
 private:
-    std::vector<std::vector<std::shared_ptr<Field>>> baseShape = {
-            {std::make_shared<Field>(false), std::make_shared<Field>(false),
-                    std::make_shared<Field>(false), std::make_shared<Field>(false)},
-            {std::make_shared<Field>(false), std::make_shared<Field>(true),
-                    std::make_shared<Field>(true),  std::make_shared<Field>(false)},
-            {std::make_shared<Field>(false), std::make_shared<Field>(true),
-                    std::make_shared<Field>(true),  std::make_shared<Field>(false)},
-            {std::make_shared<Field>(false), std::make_shared<Field>(false),
-                    std::make_shared<Field>(false), std::make_shared<Field>(false)}
-    };
+
+    std::vector<std::vector<std::shared_ptr<Field>>> baseShape =
+            Shape_Generator::get_shape_from_array(
+                    {{{0, 0, 0, 0},
+                             {0, 1, 1, 0},
+                             {0, 1, 1, 0},
+                             {0, 0, 0, 0}}}
+            );
 };
 
 
