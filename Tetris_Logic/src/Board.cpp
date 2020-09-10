@@ -37,7 +37,7 @@ Board::Board() {
     }
     this->current_figure = std::make_shared<Figure>(get_random_figure());
     this->next_figure = std::make_shared<Figure>(get_random_figure());
-    this->place_piece_on_board();
+    this->init_figure_on_board();
     // todo place figure on board
 }
 
@@ -49,11 +49,11 @@ void Board::set_next_piece() {
 
 }
 
-const int Board::getXDim() {
+int Board::getXDim() {
     return x_dim;
 }
 
-const int Board::getYDim() {
+int Board::getYDim() {
     return y_dim;
 }
 
@@ -80,41 +80,66 @@ void Board::fill_current_possible_figures_vector() {
 void Board::move_piece() {
     // todo test
     // todo make it only move the desired piece and no other blocks
-    this->current_figure_pos.first++;
-    int start_pos_x = this->current_figure_pos.second + this->current_figure->getWidth() - 1;
-    int start_pos_y = this->current_figure_pos.first + this->current_figure->getHeight() - 1;
-    for (int i = start_pos_x; i >= this->current_figure_pos.second; i--) {
-        for (int j = start_pos_y; j >= this->current_figure_pos.first; j--) {
-            std::cout << "j " << j << " i " << i << "\n";
-            this->fields[j][i] = this->fields[j - 1][i];
+    this->current_figure->setPos(this->current_figure->get_x_pos(), this->current_figure->get_y_pos() + 1);
+    for (int i = this->current_figure->getWidth() - 1; i >= 0; i--) {
+        for (int j = this->current_figure->getHeight() - 1; j >= 0; j--) {
+            int y_pos = j + current_figure->get_x_pos();
+            int x_pos = i + current_figure->get_y_pos();
+            std::cout << "xpos " << x_pos << " ypos " << y_pos << "\n";
+            if (this->current_figure->getShape()[j][i]->isTaken()) {
+                this->fields[y_pos][x_pos] = this->fields[y_pos - 1][x_pos];
+                this->fields[y_pos - 1][x_pos]->setIsTaken(false);
+            }
         }
     }
 }
 
-void Board::place_piece_on_board() {
+
+
+
+
+void Board::init_figure_on_board() {
     // FixMe: Placeholder to see if it works, implement properly
     // todo: check if field is taken and game over
-    int xbeg = 5;
-    int ybeg = 0;
-    this->current_figure_pos = std::pair(ybeg, xbeg);
-    for (int i = 0; i < this->current_figure->getWidth(); i++) {
-        for (int j = 0; j < this->current_figure->getHeight(); j++) {
-            this->fields[this->current_figure_pos.first + i][this->current_figure_pos.second + j] = this->current_figure->getShape()[i][j];
-        }
-    }
+    this->init_figure_pos();
+    this->place_figure();
 }
 
 
 std::string Board::to_string() {
     std::string return_string;
-    for (auto &i : this->fields) {
-        for (auto &j : i) {
-            return_string += (*j).toString();
+    for (int i = 0; i < y_dim; i++) {
+        for (auto &field : this->fields) {
+            return_string += field[i]->toString();
             return_string += " ";
         }
         return_string += "\n";
     }
     return return_string;
+}
+
+void Board::init_figure_pos() {
+    this->current_figure->setPos(4, 0);
+}
+
+// todo make work from bottom to top (so that when figure is first placed into the board only part of it can be placed)
+void Board::place_figure() {
+    for (int i = 0; i < this->current_figure->getWidth(); i++) {
+        for (int j = 0; j < this->current_figure->getHeight(); j++) {
+            if (this->current_figure->getShape()[i][j]->isTaken())
+                this->fields[this->current_figure->getPos().first + i][this->current_figure->getPos().second + j]->setIsTaken(true);
+        }
+    }
+}
+
+// todo make work from bottom to top
+void Board::remove_figure() {
+    for (int i = 0; i < this->current_figure->getWidth(); i++) {
+        for (int j = 0; j < this->current_figure->getHeight(); j++) {
+            if (this->current_figure->getShape()[i][j]->isTaken())
+                this->fields[this->current_figure->getPos().first + i][this->current_figure->getPos().second + j]->setIsTaken(false);
+        }
+    }
 }
 
 

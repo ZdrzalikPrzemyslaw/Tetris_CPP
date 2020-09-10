@@ -25,8 +25,8 @@ public:
     void speedUpFalling();
     Board();
     ~Board();
-    static const int getXDim();
-    static const int getYDim();
+    static int getXDim();
+    static int getYDim();
     std::string to_string();
 
 private:
@@ -43,14 +43,16 @@ private:
     };
     std::vector<std::shared_ptr<Figure>> current_possible_figures_vector;
     std::shared_ptr<Figure> current_figure;
-    std::pair<int, int> current_figure_pos;
     std::shared_ptr<Figure> next_figure;
-    std::array<std::array<std::shared_ptr<Field>, x_dim>, y_dim> fields;
+    std::shared_ptr<Field> fields [x_dim][y_dim];
     void set_next_piece();
     Figure get_random_figure();
     void fill_current_possible_figures_vector();
     void move_piece();
-    void place_piece_on_board();
+    void init_figure_on_board();
+    void init_figure_pos();
+    void place_figure();
+    void remove_figure();
 };
 
 

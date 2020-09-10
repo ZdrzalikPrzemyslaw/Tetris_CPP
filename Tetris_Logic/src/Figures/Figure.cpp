@@ -88,4 +88,30 @@ int Figure::getHeight() const {
     return this->shape[0].size();
 }
 
+const std::pair<int, int> &Figure::getPos() const {
+    return pos;
+}
+
+void Figure::setPos(int x_pos, int y_pos) {
+    this->pos.first = x_pos;
+    this->pos.second = y_pos;
+}
+
+int Figure::get_x_pos() {
+    return this->pos.first;
+}
+
+int Figure::get_y_pos() {
+    return this->pos.second;
+}
+
+void Figure::set_x_pos(int x_pos) {
+    this->pos.first = x_pos;
+}
+
+void Figure::set_y_pos(int y_pos) {
+    this->pos.second = y_pos;
+}
+
+
 
