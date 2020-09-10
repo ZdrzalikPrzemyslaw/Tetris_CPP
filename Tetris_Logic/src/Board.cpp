@@ -14,15 +14,36 @@ void Board::step() {
 }
 
 void Board::moveRight() {
-
+    this->remove_figure();
+    this->current_figure->set_x_pos(this->current_figure->get_x_pos() + 1);
+    bool did_work = this->place_figure();
+    if (!did_work) {
+        this->current_figure->set_x_pos(this->current_figure->get_x_pos() - 1);
+        this->place_figure();
+    }
 }
 
 void Board::moveLeft() {
-
+    this->remove_figure();
+    this->current_figure->set_x_pos(this->current_figure->get_x_pos() - 1);
+    bool did_work = this->place_figure();
+    if (!did_work) {
+        this->current_figure->set_x_pos(this->current_figure->get_x_pos() + 1);
+        this->place_figure();
+    }
 }
 
 void Board::rotate() {
-
+    this->remove_figure();
+    this->current_figure->rotate();
+    bool did_work = this->place_figure();
+    if (!did_work) {
+        // todo add counter rotation method
+        this->current_figure->rotate();
+        this->current_figure->rotate();
+        this->current_figure->rotate();
+        this->place_figure();
+    }
 }
 
 void Board::speedUpFalling() {
@@ -80,22 +101,13 @@ void Board::fill_current_possible_figures_vector() {
 void Board::move_piece() {
     // todo test
     // todo make it only move the desired piece and no other blocks
-    this->current_figure->setPos(this->current_figure->get_x_pos(), this->current_figure->get_y_pos() + 1);
-    for (int i = this->current_figure->getWidth() - 1; i >= 0; i--) {
-        for (int j = this->current_figure->getHeight() - 1; j >= 0; j--) {
-            int y_pos = j + current_figure->get_x_pos();
-            int x_pos = i + current_figure->get_y_pos();
-            std::cout << "xpos " << x_pos << " ypos " << y_pos << "\n";
-            if (this->current_figure->getShape()[j][i]->isTaken()) {
-                this->fields[y_pos][x_pos] = this->fields[y_pos - 1][x_pos];
-                this->fields[y_pos - 1][x_pos]->setIsTaken(false);
-            }
-        }
+    this->remove_figure();
+    this->current_figure->set_next_y_pos();
+    bool did_work = this->place_figure();
+    if (!did_work) {
+        // todo end control of piece and get next piece
     }
 }
-
-
-
 
 
 void Board::init_figure_on_board() {
@@ -123,13 +135,26 @@ void Board::init_figure_pos() {
 }
 
 // todo make work from bottom to top (so that when figure is first placed into the board only part of it can be placed)
-void Board::place_figure() {
+bool Board::place_figure() {
+    // if the position we want to move our figure to is taken return false
+    for (int i = 0; i < this->current_figure->getWidth(); i++) {
+        for (int j = 0; j < this->current_figure->getHeight(); j++) {
+            if (this->current_figure->getShape()[i][j]->isTaken()) {
+                if (this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
+                                                                        j]->isTaken()) {
+                    return false;
+                }
+            }
+        }
+    }
+    // place figure in new position
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
             if (this->current_figure->getShape()[i][j]->isTaken())
-                this->fields[this->current_figure->getPos().first + i][this->current_figure->getPos().second + j]->setIsTaken(true);
+                this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() + j]->setIsTaken(true);
         }
     }
+    return true;
 }
 
 // todo make work from bottom to top
@@ -137,7 +162,8 @@ void Board::remove_figure() {
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
             if (this->current_figure->getShape()[i][j]->isTaken())
-                this->fields[this->current_figure->getPos().first + i][this->current_figure->getPos().second + j]->setIsTaken(false);
+                this->fields[this->current_figure->getPos().first + i][this->current_figure->getPos().second +
+                                                                       j]->setIsTaken(false);
         }
     }
 }

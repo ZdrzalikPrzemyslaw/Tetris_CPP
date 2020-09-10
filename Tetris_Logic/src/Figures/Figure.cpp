@@ -113,5 +113,9 @@ void Figure::set_y_pos(int y_pos) {
     this->pos.second = y_pos;
 }
 
+void Figure::set_next_y_pos() {
+    this->set_y_pos(this->get_y_pos() + 1);
+}
+
 
 

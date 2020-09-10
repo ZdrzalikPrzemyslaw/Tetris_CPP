@@ -19,10 +19,8 @@ private:
 
     std::vector<std::vector<std::shared_ptr<Field>>> baseShape =
             Shape_Generator::get_shape_from_vector(
-                     {{0, 0, 0, 0},
-                             {0, 1, 1, 0},
-                             {0, 1, 1, 0},
-                             {0, 0, 0, 0}}
+                    {{1, 1},
+                            {1, 1}}
             );
 };
 

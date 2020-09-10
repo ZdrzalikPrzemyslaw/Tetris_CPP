@@ -32,8 +32,8 @@ public:
     int get_y_pos();
     void set_x_pos(int x_pos);
     void set_y_pos(int y_pos);
-
     void setPos(int x_pos, int y_pos);
+    void set_next_y_pos();
 };
 
 

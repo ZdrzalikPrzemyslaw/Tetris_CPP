@@ -51,7 +51,7 @@ private:
     void move_piece();
     void init_figure_on_board();
     void init_figure_pos();
-    void place_figure();
+    bool place_figure();
     void remove_figure();
 };
 
