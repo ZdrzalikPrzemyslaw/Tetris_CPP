@@ -22,7 +22,6 @@ public:
     void moveRight();
     void moveLeft();
     void rotate();
-    void speedUpFalling();
     Board();
     ~Board();
     static int getXDim();

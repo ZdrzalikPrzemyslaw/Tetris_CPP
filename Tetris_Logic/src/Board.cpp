@@ -46,11 +46,6 @@ void Board::rotate() {
     }
 }
 
-void Board::speedUpFalling() {
-
-}
-
-
 Board::Board() {
     for (auto &i : this->fields) {
         for (auto &j : i) {
@@ -136,10 +131,14 @@ void Board::init_figure_pos() {
 
 // todo make work from bottom to top (so that when figure is first placed into the board only part of it can be placed)
 bool Board::place_figure() {
-    // if the position we want to move our figure to is taken return false
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
             if (this->current_figure->getShape()[i][j]->isTaken()) {
+                // don't allow moving out of board
+                if (this->current_figure->get_x_pos() + i < 0 || this->current_figure->get_x_pos() + i > Board::x_dim - 1)
+                    return false;
+
+                // if the position we want to move our figure to is taken return false
                 if (this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
                                                                         j]->isTaken()) {
                     return false;
