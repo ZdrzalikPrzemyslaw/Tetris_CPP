@@ -14,8 +14,9 @@ BOOST_AUTO_TEST_SUITE(Board_Test)
     // todo for now just to see if it works visually
         Board board;
         std::cout << board.to_string() << "\n";
-//        board.step();
-//        std::cout << board.to_string() << "\n";
+        board.step();
+        board.step();
+        std::cout << board.to_string() << "\n";
         for(int i = 0; i < 30; i++) {
             board.moveRight();
         }

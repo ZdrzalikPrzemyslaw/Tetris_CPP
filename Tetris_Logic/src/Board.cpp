@@ -126,7 +126,7 @@ std::string Board::to_string() {
 }
 
 void Board::init_figure_pos() {
-    this->current_figure->setPos(4, 0);
+    this->current_figure->setPos(4, 1 - this->current_figure->getHeight());
 }
 
 // todo make work from bottom to top (so that when figure is first placed into the board only part of it can be placed)
@@ -134,14 +134,17 @@ bool Board::place_figure() {
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
             if (this->current_figure->getShape()[i][j]->isTaken()) {
-                // don't allow moving out of board
-                if (this->current_figure->get_x_pos() + i < 0 || this->current_figure->get_x_pos() + i > Board::x_dim - 1)
+                if (this->current_figure->get_x_pos() + i < 0 ||
+                    this->current_figure->get_x_pos() + i > Board::x_dim - 1)
                     return false;
+                if (j + this->current_figure->get_y_pos() >= 0) {
+                    // don't allow moving out of board
 
-                // if the position we want to move our figure to is taken return false
-                if (this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
-                                                                        j]->isTaken()) {
-                    return false;
+                    // if the position we want to move our figure to is taken return false
+                    if (this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
+                                                                            j]->isTaken()) {
+                        return false;
+                    }
                 }
             }
         }
@@ -149,9 +152,12 @@ bool Board::place_figure() {
     // place figure in new position
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
-            if (this->current_figure->getShape()[i][j]->isTaken())
-                this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() + j]->setIsTaken(
-                        true);
+            if (this->current_figure->getShape()[i][j]->isTaken()) {
+                if (j + this->current_figure->get_y_pos() >= 0) {
+                    this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
+                                                                        j]->setIsTaken(true);
+                }
+            }
         }
     }
     return true;
@@ -162,8 +168,10 @@ void Board::remove_figure() {
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
             if (this->current_figure->getShape()[i][j]->isTaken())
-                this->fields[this->current_figure->getPos().first + i][this->current_figure->getPos().second +
-                                                                       j]->setIsTaken(false);
+                if (j + this->current_figure->get_y_pos() >= 0) {
+                    this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
+                                                                        j]->setIsTaken(false);
+                }
         }
     }
 }
