@@ -9,6 +9,13 @@
 #include "Figure.h"
 #include "Shape_Generator.h"
 
+
+/**
+ * shape:
+ *     x
+ *   x x x
+ */
+
 class Figure_T : public Figure {
 public:
     Figure_T();

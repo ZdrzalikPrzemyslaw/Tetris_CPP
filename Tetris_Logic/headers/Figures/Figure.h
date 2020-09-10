@@ -8,6 +8,9 @@
 #include <memory>
 #include <vector>
 #include "Field.h"
+// todo :
+// https://strategywiki.org/wiki/Tetris/Rotation_systems
+// https://tetris.wiki/Tetromino#I
 
 class Figure {
 public:
