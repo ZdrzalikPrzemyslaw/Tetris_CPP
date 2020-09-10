@@ -12,7 +12,7 @@ add_library(Tetris_Logic_Lib ${SOURCE_FILES})
 
 add_executable (Test_Tetris_Logic ${SOURCE_TEST_FILES})
 
-target_include_directories(Tetris_Logic_Lib PUBLIC include)
+target_include_directories(Tetris_Logic_Lib PUBLIC headers)
 
 include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/headers

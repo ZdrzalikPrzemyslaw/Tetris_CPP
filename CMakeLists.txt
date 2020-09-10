@@ -7,3 +7,7 @@ add_subdirectory(Game)
 add_subdirectory(Tetris_Logic)
 
 add_executable(Tetris main.cpp)
+
+target_link_libraries(Tetris
+        Tetris_Logic_Lib
+)
