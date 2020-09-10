@@ -104,6 +104,7 @@ void Board::move_piece() {
     this->remove_figure();
     this->current_figure->set_next_y_pos();
     bool did_work = this->place_figure();
+    // todo check if piece is at the bottom
     if (!did_work) {
         // todo end control of piece and get next piece
     }
