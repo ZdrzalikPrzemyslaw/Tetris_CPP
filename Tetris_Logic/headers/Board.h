@@ -5,15 +5,15 @@
 #ifndef TETRIS_BOARD_H
 #define TETRIS_BOARD_H
 
-#include <Figures/Figure.h>
+#include "Figures/Figure.h"
 #include <string_view>
-#include <Figures/Figure_I.h>
-#include <Figures/Figure_J.h>
-#include <Figures/Figure_L.h>
-#include <Figures/Figure_O.h>
-#include <Figures/Figure_S.h>
-#include <Figures/Figure_T.h>
-#include <Figures/Figure_Z.h>
+#include "Figures/Figure_I.h"
+#include "Figures/Figure_J.h"
+#include "Figures/Figure_L.h"
+#include "Figures/Figure_O.h"
+#include "Figures/Figure_S.h"
+#include "Figures/Figure_T.h"
+#include "Figures/Figure_Z.h"
 #include "map"
 
 class Board {
@@ -45,7 +45,7 @@ private:
     std::shared_ptr<Figure> current_figure;
     std::shared_ptr<Figure> next_figure;
     std::shared_ptr<Field> fields [x_dim][y_dim];
-    void set_next_piece();
+    void set_next_figure();
     Figure get_random_figure();
     void fill_current_possible_figures_vector();
     void move_piece();
@@ -53,6 +53,7 @@ private:
     void init_figure_pos();
     bool place_figure();
     void remove_figure();
+    void set_current_figure();
 };
 
 

@@ -50,14 +50,14 @@ void Board::speedUpFalling() {
 
 }
 
+
 Board::Board() {
     for (auto &i : this->fields) {
         for (auto &j : i) {
             j = std::make_shared<Field>(false);
         }
     }
-    this->current_figure = std::make_shared<Figure>(get_random_figure());
-    this->next_figure = std::make_shared<Figure>(get_random_figure());
+    this->set_current_figure();
     this->init_figure_on_board();
     // todo place figure on board
 }
@@ -66,8 +66,8 @@ Board::~Board() {
 
 }
 
-void Board::set_next_piece() {
-
+void Board::set_next_figure() {
+    this->next_figure = std::make_shared<Figure>(get_random_figure());
 }
 
 int Board::getXDim() {
@@ -100,7 +100,6 @@ void Board::fill_current_possible_figures_vector() {
 
 void Board::move_piece() {
     // todo test
-    // todo make it only move the desired piece and no other blocks
     this->remove_figure();
     this->current_figure->set_next_y_pos();
     bool did_work = this->place_figure();
@@ -152,7 +151,8 @@ bool Board::place_figure() {
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
             if (this->current_figure->getShape()[i][j]->isTaken())
-                this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() + j]->setIsTaken(true);
+                this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() + j]->setIsTaken(
+                        true);
         }
     }
     return true;
@@ -167,6 +167,13 @@ void Board::remove_figure() {
                                                                        j]->setIsTaken(false);
         }
     }
+}
+
+void Board::set_current_figure() {
+    if (this->next_figure == nullptr)
+        set_next_figure();
+    this->current_figure = next_figure;
+    this->set_next_figure();
 }
 
 

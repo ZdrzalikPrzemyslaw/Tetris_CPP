@@ -78,10 +78,8 @@ BOOST_AUTO_TEST_SUITE(Figures_Test)
     }
 
     auto rotated_figure_O = Shape_Generator::get_shape_from_vector(
-             {{0, 0, 0, 0},
-                     {0, 1, 1, 0},
-                     {0, 1, 1, 0},
-                     {0, 0, 0, 0}}
+             {{1, 1},
+              {1, 1}}
     );
 
     BOOST_AUTO_TEST_CASE(Test_Rotate_Figure_O) {
