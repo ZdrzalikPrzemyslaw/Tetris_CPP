@@ -28,6 +28,7 @@ public:
     bool get_is_running();
 
 private:
+    int counter = 0;
     bool is_running;
     SDL_Window *window;
     SDL_Renderer *renderer;

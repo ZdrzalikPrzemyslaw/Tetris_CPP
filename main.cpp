@@ -2,7 +2,7 @@
 #include <Game.h>
 
 
-auto main() -> int {
+auto main(int argc, char *args[]) -> int {
     Game *game = new Game();
     game->init("title", 500, 500, 600, 400, false);
     while(game->get_is_running()) {

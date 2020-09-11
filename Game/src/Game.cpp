@@ -49,7 +49,8 @@ Game::~Game() {
 }
 
 void Game::update() {
-
+    std::cout << counter << std::endl;
+    counter++;
 }
 
 void Game::render() {
