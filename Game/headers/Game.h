@@ -6,6 +6,7 @@
 #define TETRIS_GAME_H
 
 #include "SDL2/SDL.h"
+#undef main
 #include "iostream"
 
 #include "memory"
@@ -30,8 +31,8 @@ public:
 
 private:
     bool is_running;
-    std::shared_ptr<SDL_Window> window;
-    std::shared_ptr<SDL_Renderer> renderer;
+    SDL_Window *window;
+    SDL_Renderer *renderer;
 };
 
 

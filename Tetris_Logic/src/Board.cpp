@@ -136,7 +136,7 @@ void Board::init_figure_pos() {
 bool Board::place_figure() {
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
-            if (this->current_figure->getShape()[i][j]->isTaken()) {
+            if (this->current_figure->getShape()[j][i]->isTaken()) {
                 if (this->current_figure->get_x_pos() + i < 0 ||
                     this->current_figure->get_x_pos() + i > Board::x_dim - 1)
                     return false;
@@ -157,7 +157,7 @@ bool Board::place_figure() {
     // place figure in new position
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
-            if (this->current_figure->getShape()[i][j]->isTaken()) {
+            if (this->current_figure->getShape()[j][i]->isTaken()) {
                 if (j + this->current_figure->get_y_pos() >= 0) {
                     this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
                                                                         j]->setIsTaken(true);
@@ -172,7 +172,7 @@ bool Board::place_figure() {
 void Board::remove_figure() {
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
-            if (this->current_figure->getShape()[i][j]->isTaken())
+            if (this->current_figure->getShape()[j][i]->isTaken())
                 if (j + this->current_figure->get_y_pos() >= 0) {
                     this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
                                                                         j]->setIsTaken(false);
