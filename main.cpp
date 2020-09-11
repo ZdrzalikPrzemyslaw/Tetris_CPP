@@ -3,6 +3,13 @@
 
 
 auto main() -> int {
-    Game game;
-    game.init("title", 500, 500, 600, 400, true);
+    Game *game = new Game();
+    game->init("title", 500, 500, 600, 400, false);
+    while(game->get_is_running()) {
+        game->handle_events();
+        game->update();
+        game->render();
+    }
+    game->clean();
+    delete game;
 }
