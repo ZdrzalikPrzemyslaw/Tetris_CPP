@@ -52,7 +52,7 @@ private:
     void init_figure_pos();
     bool place_figure();
     void remove_figure();
-    void set_current_figure();
+    void set_current_figure_to_next_figure_and_get_new_next_figure();
 };
 
 

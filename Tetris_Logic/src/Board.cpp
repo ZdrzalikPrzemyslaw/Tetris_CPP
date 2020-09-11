@@ -52,7 +52,7 @@ Board::Board() {
             j = std::make_shared<Field>(false);
         }
     }
-    this->set_current_figure();
+    this->set_current_figure_to_next_figure_and_get_new_next_figure();
     this->init_figure_on_board();
     // todo place figure on board
 }
@@ -100,6 +100,9 @@ void Board::move_piece() {
     bool did_work = this->place_figure();
     // todo check if piece is at the bottom
     if (!did_work) {
+        this->current_figure->set_y_pos(this->current_figure->get_y_pos() - 1);
+        this->place_figure();
+        this->set_current_figure_to_next_figure_and_get_new_next_figure();
         // todo end control of piece and get next piece
     }
 }
@@ -137,9 +140,11 @@ bool Board::place_figure() {
                 if (this->current_figure->get_x_pos() + i < 0 ||
                     this->current_figure->get_x_pos() + i > Board::x_dim - 1)
                     return false;
-                if (j + this->current_figure->get_y_pos() >= 0) {
+                else if (j + this->current_figure->get_y_pos() >= 0) {
                     // don't allow moving out of board
-
+                    if (j + this->current_figure->get_y_pos() >= y_dim) {
+                        return false;
+                    }
                     // if the position we want to move our figure to is taken return false
                     if (this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
                                                                             j]->isTaken()) {
@@ -176,11 +181,12 @@ void Board::remove_figure() {
     }
 }
 
-void Board::set_current_figure() {
+void Board::set_current_figure_to_next_figure_and_get_new_next_figure() {
     if (this->next_figure == nullptr)
         set_next_figure();
     this->current_figure = next_figure;
     this->set_next_figure();
+    this->init_figure_on_board();
 }
 
 

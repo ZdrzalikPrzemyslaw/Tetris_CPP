@@ -13,12 +13,10 @@ BOOST_AUTO_TEST_SUITE(Board_Test)
     BOOST_AUTO_TEST_CASE(Board_TMP_Test) {
     // todo for now just to see if it works visually
         Board board;
-        std::cout << board.to_string() << "\n";
-        board.step();
-        board.step();
-        std::cout << board.to_string() << "\n";
-        for(int i = 0; i < 30; i++) {
-            board.moveRight();
+        for(int i = 0; i < 70; i++) {
+            if (i % 20 == 0)
+                std::cout << board.to_string() << "\n";
+            board.step();
         }
         std::cout << board.to_string() << "\n";
     }
