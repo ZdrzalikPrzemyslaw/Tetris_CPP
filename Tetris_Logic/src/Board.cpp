@@ -9,6 +9,8 @@
 #include "Board.h"
 #include "list"
 
+//todo add game over
+
 void Board::step() {
     this->move_piece();
 }
@@ -94,22 +96,18 @@ void Board::fill_current_possible_figures_vector() {
 }
 
 void Board::move_piece() {
-    // todo test
     this->remove_figure();
     this->current_figure->set_next_y_pos();
     bool did_work = this->place_figure();
-    // todo check if piece is at the bottom
     if (!did_work) {
         this->current_figure->set_y_pos(this->current_figure->get_y_pos() - 1);
         this->place_figure();
         this->set_current_figure_to_next_figure_and_get_new_next_figure();
-        // todo end control of piece and get next piece
     }
 }
 
 
 void Board::init_figure_on_board() {
-    // FixMe: Placeholder to see if it works, implement properly
     // todo: check if field is taken and game over
     this->init_figure_pos();
     this->place_figure();
@@ -132,7 +130,6 @@ void Board::init_figure_pos() {
     this->current_figure->setPos(4, 1 - this->current_figure->getHeight());
 }
 
-// todo make work from bottom to top (so that when figure is first placed into the board only part of it can be placed)
 bool Board::place_figure() {
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
@@ -168,7 +165,6 @@ bool Board::place_figure() {
     return true;
 }
 
-// todo make work from bottom to top
 void Board::remove_figure() {
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {

@@ -25,7 +25,7 @@ public:
 
     void handle_events();
 
-    bool get_is_running();
+    bool get_is_running() const;
 
 private:
     int counter = 0;

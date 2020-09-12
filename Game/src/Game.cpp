@@ -79,6 +79,6 @@ void Game::handle_events() {
 
 }
 
-bool Game::get_is_running() {
+bool Game::get_is_running() const {
     return this->is_running;
 }
