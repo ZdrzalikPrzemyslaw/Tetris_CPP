@@ -23,6 +23,12 @@ void Board::moveLeft() {
     this->move_figure_to(this->current_figure->get_x_pos() - 1, this->current_figure->get_y_pos());
 }
 
+void Board::move_down() {
+    if (!this->move_figure_to(this->current_figure->get_x_pos(), this->current_figure->get_y_pos() + 1)) {
+        this->set_current_figure_to_next_figure_and_get_new_next_figure();
+    }
+}
+
 void Board::rotate() {
     this->remove_figure();
     this->current_figure->rotate();
@@ -82,13 +88,6 @@ void Board::fill_current_possible_figures_vector() {
     std::shuffle(std::begin(this->current_possible_figures_vector), std::end(this->current_possible_figures_vector),
                  rng);
 }
-
-void Board::move_down() {
-    if (!this->move_figure_to(this->current_figure->get_x_pos(), this->current_figure->get_y_pos() + 1)) {
-        this->set_current_figure_to_next_figure_and_get_new_next_figure();
-    }
-}
-
 
 void Board::init_figure_on_board() {
     // todo: check if field is taken and game over
