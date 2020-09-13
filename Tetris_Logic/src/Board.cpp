@@ -196,6 +196,11 @@ std::string Board::to_string() {
 
 // todo test
 void Board::drop_figure_to_bottom() {
-    while(this->move_down());
+    while (this->move_down());
+}
+
+std::ostream &operator<<(std::ostream &osm, Board board) {
+    osm << board.to_string();
+    return osm;
 }
 

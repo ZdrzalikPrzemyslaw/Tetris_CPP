@@ -27,6 +27,7 @@ public:
     static int getXDim();
     static int getYDim();
     std::string to_string();
+    friend std::ostream& operator<<(std::ostream& osm, Board board);
 
 private:
     static const int x_dim = 10;
