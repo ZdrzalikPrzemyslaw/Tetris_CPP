@@ -7,32 +7,20 @@
 #include <chrono>
 #include <iostream>
 #include "Board.h"
-#include "list"
 
-//todo add game over
+// todo add game over
+//  najgorsza klasa w całej grze, łatwo się pogubić, nie wiem jak poprawić
 
 void Board::step() {
-    this->move_piece();
+    this->move_down();
 }
 
 void Board::moveRight() {
-    this->remove_figure();
-    this->current_figure->set_x_pos(this->current_figure->get_x_pos() + 1);
-    bool did_work = this->place_figure();
-    if (!did_work) {
-        this->current_figure->set_x_pos(this->current_figure->get_x_pos() - 1);
-        this->place_figure();
-    }
+    this->move_figure_to(this->current_figure->get_x_pos() + 1, this->current_figure->get_y_pos());
 }
 
 void Board::moveLeft() {
-    this->remove_figure();
-    this->current_figure->set_x_pos(this->current_figure->get_x_pos() - 1);
-    bool did_work = this->place_figure();
-    if (!did_work) {
-        this->current_figure->set_x_pos(this->current_figure->get_x_pos() + 1);
-        this->place_figure();
-    }
+    this->move_figure_to(this->current_figure->get_x_pos() - 1, this->current_figure->get_y_pos());
 }
 
 void Board::rotate() {
@@ -95,13 +83,8 @@ void Board::fill_current_possible_figures_vector() {
                  rng);
 }
 
-void Board::move_piece() {
-    this->remove_figure();
-    this->current_figure->set_next_y_pos();
-    bool did_work = this->place_figure();
-    if (!did_work) {
-        this->current_figure->set_y_pos(this->current_figure->get_y_pos() - 1);
-        this->place_figure();
+void Board::move_down() {
+    if (!this->move_figure_to(this->current_figure->get_x_pos(), this->current_figure->get_y_pos() + 1)) {
         this->set_current_figure_to_next_figure_and_get_new_next_figure();
     }
 }
@@ -130,31 +113,16 @@ void Board::init_figure_pos() {
     this->current_figure->setPos(4, 1 - this->current_figure->getHeight());
 }
 
+
+
 bool Board::place_figure() {
-    for (int i = 0; i < this->current_figure->getWidth(); i++) {
-        for (int j = 0; j < this->current_figure->getHeight(); j++) {
-            if (this->current_figure->getShape()[j][i]->isTaken()) {
-                if (this->current_figure->get_x_pos() + i < 0 ||
-                    this->current_figure->get_x_pos() + i > Board::x_dim - 1)
-                    return false;
-                else if (j + this->current_figure->get_y_pos() >= 0) {
-                    // don't allow moving out of board
-                    if (j + this->current_figure->get_y_pos() >= y_dim) {
-                        return false;
-                    }
-                    // if the position we want to move our figure to is taken return false
-                    if (this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
-                                                                            j]->isTaken()) {
-                        return false;
-                    }
-                }
-            }
-        }
-    }
+    if(!this->check_if_figure_can_be_placed())
+        return false;
     // place figure in new position
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
         for (int j = 0; j < this->current_figure->getHeight(); j++) {
             if (this->current_figure->getShape()[j][i]->isTaken()) {
+                // only place in bounds, could also catch excpetion invalid access and ignore result
                 if (j + this->current_figure->get_y_pos() >= 0) {
                     this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
                                                                         j]->setIsTaken(true);
@@ -183,6 +151,47 @@ void Board::set_current_figure_to_next_figure_and_get_new_next_figure() {
     this->current_figure = next_figure;
     this->set_next_figure();
     this->init_figure_on_board();
+}
+
+bool Board::check_if_figure_can_be_placed() {
+    for (int i = 0; i < this->current_figure->getWidth(); i++) {
+        for (int j = 0; j < this->current_figure->getHeight(); j++) {
+            if (this->current_figure->getShape()[j][i]->isTaken()) {
+                // check if we are in bounds x-axis
+                if (this->current_figure->get_x_pos() + i < 0 ||
+                    this->current_figure->get_x_pos() + i > Board::x_dim - 1)
+                    return false;
+                // only check inside the bounds of board
+                else if (j + this->current_figure->get_y_pos() >= 0) {
+                    // check if we moved too far (figure pos is at the bottom), if yes return false so this->move_down() can do the work
+                    if (j + this->current_figure->get_y_pos() >= y_dim) {
+                        return false;
+                    }
+                    // if the position we want to move our figure to is taken return false
+                    if (this->fields[this->current_figure->get_x_pos() + i][this->current_figure->get_y_pos() +
+                                                                            j]->isTaken()) {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
+
+bool Board::move_figure_to(int x_pos , int y_pos) {
+    this->remove_figure();
+    int xpos_before = this->current_figure->get_x_pos();
+    int ypos_before = this->current_figure->get_y_pos();
+    this->current_figure->set_x_pos(x_pos);
+    this->current_figure->set_y_pos(y_pos);
+    bool did_work = this->place_figure();
+    if (!did_work) {
+        this->current_figure->set_x_pos(xpos_before);
+        this->current_figure->set_y_pos(ypos_before);
+        this->place_figure();
+    }
+    return did_work;
 }
 
 
