@@ -58,18 +58,9 @@ bool operator==(const Figure &lhs, const Figure &rhs) {
     return true;
 }
 
-Figure::Figure() {
-    for (int i = 0; i < FIGURE_SIZE; i++) {
-        this->shape.emplace_back();
-        for (int j = 0; j < FIGURE_SIZE; j++) {
-            this->shape.back().push_back(std::make_shared<Field>(false));
-        }
-    }
-}
+Figure::Figure() = default;
 
-Figure::~Figure() {
-
-}
+Figure::~Figure() = default;
 
 Figure::Figure(Figure const &figure) {
     for (auto& i : figure.getShape()) {
@@ -97,11 +88,11 @@ void Figure::setPos(int x_pos, int y_pos) {
     this->pos.second = y_pos;
 }
 
-int Figure::get_x_pos() {
+int Figure::get_x_pos() const {
     return this->pos.first;
 }
 
-int Figure::get_y_pos() {
+int Figure::get_y_pos() const {
     return this->pos.second;
 }
 

@@ -9,6 +9,4 @@ Figure_J::Figure_J() : Figure() {
     this->shape = baseShape;
 }
 
-Figure_J::~Figure_J() {
-
-}
+Figure_J::~Figure_J() = default;

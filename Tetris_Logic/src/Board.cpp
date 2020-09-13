@@ -53,9 +53,7 @@ Board::Board() {
     // todo place figure on board
 }
 
-Board::~Board() {
-
-}
+Board::~Board() = default;
 
 void Board::set_next_figure() {
     this->next_figure = std::make_shared<Figure>(get_random_figure());

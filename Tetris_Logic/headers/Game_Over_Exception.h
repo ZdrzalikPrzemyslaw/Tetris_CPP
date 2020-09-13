@@ -7,6 +7,7 @@
 
 #include <exception>
 #include <string>
+#include <utility>
 
 class Game_Over_Exception: virtual public std::exception {
 protected:
@@ -23,37 +24,37 @@ public:
      *  @param err_off Error offset
      */
     explicit
-    Game_Over_Exception(const std::string& msg, int err_num, int err_off):
+    Game_Over_Exception(std::string  msg, int err_num, int err_off):
             error_number(err_num),
             error_offset(err_off),
-            error_message(msg)
+            error_message(std::move(msg))
     {}
 
     /** Destructor.
      *  Virtual to allow for subclassing.
      */
-    virtual ~Game_Over_Exception() throw () {}
+    ~Game_Over_Exception() noexcept override = default;
 
     /** Returns a pointer to the (constant) error description.
      *  @return A pointer to a const char*. The underlying memory
      *  is in possession of the Except object. Callers must
      *  not attempt to free the memory.
      */
-    virtual const char* what() const throw () {
+    [[nodiscard]] const char* what() const noexcept override {
         return error_message.c_str();
     }
 
     /** Returns error number.
      *  @return #error_number
      */
-    virtual int getErrorNumber() const throw() {
+    [[nodiscard]] virtual int getErrorNumber() const noexcept {
         return error_number;
     }
 
     /**Returns error offset.
      * @return #error_offset
      */
-    virtual int getErrorOffset() const throw() {
+    [[nodiscard]] virtual int getErrorOffset() const noexcept {
         return error_offset;
     }
 

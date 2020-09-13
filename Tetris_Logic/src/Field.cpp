@@ -12,9 +12,7 @@ Field::Field() {
     this->is_taken = false;
 }
 
-Field::~Field() {
-
-}
+Field::~Field() = default;
 
 void Field::setIsTaken(bool isTaken) {
     this->is_taken = isTaken;

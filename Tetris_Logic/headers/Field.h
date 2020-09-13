@@ -14,11 +14,11 @@ private:
 public:
     void setIsTaken(bool isTaken);
 public:
-    bool isTaken() const;
+    [[nodiscard]] bool isTaken() const;
     Field();
-    Field(bool isTaken);
+    explicit Field(bool isTaken);
     ~Field();
-    std::string toString() const;
+    [[nodiscard]] std::string toString() const;
     friend bool operator ==(const Field &lhs, const Field &rhs);
     friend bool operator !=(const Field &lhs, const Field &rhs);
 

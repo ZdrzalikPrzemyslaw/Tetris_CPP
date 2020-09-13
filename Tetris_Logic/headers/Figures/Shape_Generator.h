@@ -13,7 +13,7 @@
 class Shape_Generator {
 public:
     static std::vector<std::vector<std::shared_ptr<Field>>>
-    get_shape_from_vector(std::vector<std::vector<int>> vector);
+    get_shape_from_vector(const std::vector<std::vector<int>>& vector);
 };
 
 

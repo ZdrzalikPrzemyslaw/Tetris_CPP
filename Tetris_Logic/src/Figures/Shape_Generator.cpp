@@ -6,7 +6,7 @@
 #include "Figures/Shape_Generator.h"
 
 std::vector<std::vector<std::shared_ptr<Field>>>
-Shape_Generator::get_shape_from_vector(std::vector<std::vector<int>> vector) {
+Shape_Generator::get_shape_from_vector(const std::vector<std::vector<int>>& vector) {
     for (auto &i : vector) {
         for (auto &j : i) {
             if (j != 0 && j != 1) {
