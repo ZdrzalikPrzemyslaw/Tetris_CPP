@@ -9,7 +9,7 @@
 // https://strategywiki.org/wiki/Tetris/Rotation_systems
 
 BOOST_AUTO_TEST_SUITE(Board_Test)
-
+// todo REAL TESTS
     BOOST_AUTO_TEST_CASE(Board_TMP_Test) {
     // todo for now just to see if it works visually
         Board board;
