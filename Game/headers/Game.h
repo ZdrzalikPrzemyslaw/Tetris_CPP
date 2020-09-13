@@ -8,7 +8,7 @@
 #include "SDL2/SDL.h"
 #undef main
 
-
+// todo : https://www.youtube.com/playlist?list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx - tutoriale
 class Game {
 public:
     Game();
