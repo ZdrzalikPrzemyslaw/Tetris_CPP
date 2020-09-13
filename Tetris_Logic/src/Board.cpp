@@ -176,6 +176,8 @@ bool Board::check_if_figure_can_be_placed() {
     return true;
 }
 
+/// moving a piece consists of freeing the fields it currently occupies, changing its position and placing it back to the board
+/// if the figure cant be moved to the target location for whatever reason it's moved back to its original position
 bool Board::move_figure_to(int x_pos , int y_pos) {
     this->remove_figure();
     int xpos_before = this->current_figure->get_x_pos();
