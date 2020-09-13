@@ -47,7 +47,7 @@ private:
     void set_next_figure();
     Figure get_random_figure();
     void fill_current_possible_figures_vector();
-    void move_down();
+    bool move_down();
     void init_figure_on_board();
     void init_figure_pos();
     bool place_figure();
@@ -55,6 +55,7 @@ private:
     void set_current_figure_to_next_figure_and_get_new_next_figure();
     bool check_if_figure_can_be_placed();
     bool move_figure_to(int x_pos, int y_pos);
+    void drop_figure_to_bottom();
 };
 
 

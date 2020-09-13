@@ -23,10 +23,12 @@ void Board::moveLeft() {
     this->move_figure_to(this->current_figure->get_x_pos() - 1, this->current_figure->get_y_pos());
 }
 
-void Board::move_down() {
+bool Board::move_down() {
     if (!this->move_figure_to(this->current_figure->get_x_pos(), this->current_figure->get_y_pos() + 1)) {
         this->set_current_figure_to_next_figure_and_get_new_next_figure();
+        return false;
     }
+    return true;
 }
 
 void Board::rotate() {
@@ -88,32 +90,19 @@ void Board::fill_current_possible_figures_vector() {
 }
 
 void Board::init_figure_on_board() {
-    // todo: check if field is taken and game over
+    // todo: If the starting position for the figure is taken game over
     this->init_figure_pos();
     this->place_figure();
 }
 
-
-std::string Board::to_string() {
-    std::string return_string;
-    for (int i = 0; i < y_dim; i++) {
-        for (auto &field : this->fields) {
-            return_string += field[i]->toString();
-            return_string += " ";
-        }
-        return_string += "\n";
-    }
-    return return_string;
-}
-
 void Board::init_figure_pos() {
+    // todo constant out the starting pos
     this->current_figure->setPos(4, 1 - this->current_figure->getHeight());
 }
 
 
-
 bool Board::place_figure() {
-    if(!this->check_if_figure_can_be_placed())
+    if (!this->check_if_figure_can_be_placed())
         return false;
     // place figure in new position
     for (int i = 0; i < this->current_figure->getWidth(); i++) {
@@ -158,7 +147,7 @@ bool Board::check_if_figure_can_be_placed() {
                 if (this->current_figure->get_x_pos() + i < 0 ||
                     this->current_figure->get_x_pos() + i > Board::x_dim - 1)
                     return false;
-                // only check inside the bounds of board
+                    // only check inside the bounds of board
                 else if (j + this->current_figure->get_y_pos() >= 0) {
                     // check if we moved too far (figure pos is at the bottom), if yes return false so this->move_down() can do the work
                     if (j + this->current_figure->get_y_pos() >= y_dim) {
@@ -178,7 +167,7 @@ bool Board::check_if_figure_can_be_placed() {
 
 /// moving a piece consists of freeing the fields it currently occupies, changing its position and placing it back to the board
 /// if the figure cant be moved to the target location for whatever reason it's moved back to its original position
-bool Board::move_figure_to(int x_pos , int y_pos) {
+bool Board::move_figure_to(int x_pos, int y_pos) {
     this->remove_figure();
     int xpos_before = this->current_figure->get_x_pos();
     int ypos_before = this->current_figure->get_y_pos();
@@ -193,4 +182,20 @@ bool Board::move_figure_to(int x_pos , int y_pos) {
     return did_work;
 }
 
+std::string Board::to_string() {
+    std::string return_string;
+    for (int i = 0; i < y_dim; i++) {
+        for (auto &field : this->fields) {
+            return_string += field[i]->toString();
+            return_string += " ";
+        }
+        return_string += "\n";
+    }
+    return return_string;
+}
+
+// todo test
+void Board::drop_figure_to_bottom() {
+    while(this->move_down());
+}
 
