@@ -9,6 +9,7 @@
 #include "Board.h"
 
 // todo add game over
+//  add tests for the class, 13.09.2020 refactor untested
 //  najgorsza klasa w całej grze, łatwo się pogubić, nie wiem jak poprawić
 
 void Board::step() {
