@@ -10,7 +10,7 @@ find_package (Boost 1.60.0 COMPONENTS "unit_test_framework" REQUIRED)
 
 add_library(Tetris_Logic_Lib ${SOURCE_FILES})
 
-add_executable (Test_Tetris_Logic ${SOURCE_TEST_FILES})
+add_executable (Logic_Test ${SOURCE_TEST_FILES})
 
 target_include_directories(Tetris_Logic_Lib PUBLIC headers)
 
@@ -20,18 +20,18 @@ include_directories(
 )
 
 target_link_libraries(
-        Test_Tetris_Logic
+        Logic_Test
         Tetris_Logic_Lib
         ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 )
 
 IF(WIN32)
-    target_link_libraries (Test_Tetris_Logic
+    target_link_libraries (Logic_Test
             -lbcrypt
             )
 ENDIF(WIN32)
 
-add_test(Lib_Test_1 Test_Tetris_Logic
+add_test(Lib_Test_1 Logic_Test
         --report_level=detailed
         --log_level=all
         --color_output=yes
