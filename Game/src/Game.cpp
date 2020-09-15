@@ -3,6 +3,7 @@
 //
 
 #include "Game.h"
+#include "TextureManager.h"
 #include <iostream>
 
 void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
@@ -33,10 +34,11 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     } else {
         this->is_running = false;
     }
-//    SDL_SetRenderDrawColor(this->renderer, 0, 255, 0, 255);
-//    SDL_RenderClear(this->renderer);
-//    SDL_RenderPresent(this->renderer);
-//    SDL_Delay(3000);
+    //    SDL_SetRenderDrawColor(this->renderer, 0, 255, 0, 255);
+    //    SDL_RenderClear(this->renderer);
+    //    SDL_RenderPresent(this->renderer);
+    //    SDL_Delay(3000);
+    this->background = TextureManager::loadTexture("assets/background.png", renderer);
 }
 
 Game::Game() {
@@ -56,6 +58,7 @@ void Game::update() {
 void Game::render() {
     SDL_RenderClear(this->renderer);
     // todo add stuff to render
+    SDL_RenderCopy(this->renderer, this->background, NULL, NULL);
     SDL_RenderPresent(this->renderer);
 }
 
