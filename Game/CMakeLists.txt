@@ -3,9 +3,15 @@ project(GameLibrary)
 set(SOURCE_FILES
         headers/Game.h src/Game.cpp src/TextureManager.cpp headers/TextureManager.h)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
+
+
+message("${CMAKE_MODULE_PATH} ")
+
 
 add_library(Game_lib ${SOURCE_FILES} )
 
