@@ -13,5 +13,8 @@ target_link_libraries(Tetris
         Game_lib
 )
 
+add_custom_command(TARGET Tetris POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:Tetris>/assets)
 
 enable_testing()

@@ -4,7 +4,7 @@
 
 auto main(int argc, char *args[]) -> int {
     Game *game = new Game();
-    game->init("title", 500, 500, 600, 400, false);
+    game->init("title", 200, 200, 720/2, 1280/2, false);
     while(game->get_is_running()) {
         game->handle_events();
         game->update();
