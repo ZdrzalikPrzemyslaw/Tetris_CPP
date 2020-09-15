@@ -1,7 +1,7 @@
 project(GameLibrary)
 
 set(SOURCE_FILES
-        headers/Game.h src/Game.cpp src/TextureManager.cpp headers/TextureManager.h)
+        headers/Game.h src/Game.cpp src/TextureManager.cpp headers/TextureManager.h src/FrameLimiter.cpp headers/FrameLimiter.h)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
