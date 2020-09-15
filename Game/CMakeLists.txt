@@ -1,7 +1,7 @@
 project(GameLibrary)
 
 set(SOURCE_FILES
-        headers/Game.h src/Game.cpp)
+        headers/Game.h src/Game.cpp src/TextureManager.cpp headers/TextureManager.h)
 
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
