@@ -38,7 +38,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     //    SDL_RenderClear(this->renderer);
     //    SDL_RenderPresent(this->renderer);
     //    SDL_Delay(3000);
-    this->background = TextureManager::loadTexture("assets/background.png", renderer);
+    this->background = TextureManager::loadTexture("assets/field.png", renderer);
 }
 
 Game::Game() {
