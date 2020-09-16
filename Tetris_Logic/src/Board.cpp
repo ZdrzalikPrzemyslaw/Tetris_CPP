@@ -27,6 +27,7 @@ void Board::moveLeft() {
 bool Board::move_down() {
     if (!this->move_figure_to(this->current_figure->get_x_pos(), this->current_figure->get_y_pos() + 1)) {
         this->set_current_figure_to_next_figure_and_get_new_next_figure();
+        remove_full_rows();
         return false;
     }
     return true;
@@ -99,6 +100,17 @@ void Board::init_figure_on_board() {
 void Board::init_figure_pos() {
     // todo constant out the starting pos
     this->current_figure->setPos(4, 1 - this->current_figure->getHeight());
+    bool isTaken = false;
+    for (int i = 0; i < this->current_figure->getWidth(); i++) {
+        for (int j = this->current_figure->getHeight() - 1; j < this->current_figure->getHeight(); j++) {
+            if (this->current_figure->getShape()[j][i]->isTaken()) {
+                isTaken = true;
+            }
+        }
+    }
+    if (!isTaken) {
+        this->current_figure->set_next_y_pos();
+    }
 }
 
 
@@ -208,5 +220,25 @@ std::ostream &operator<<(std::ostream &osm, Board board) {
 // todo make safe
 std::shared_ptr<Field> Board::get(int xpos, int ypos) {
     return this->fields[xpos][ypos];
+}
+
+// todo test
+void Board::remove_full_rows() {
+    for (int i = y_dim - 1; i >= 0; i--) {
+        bool is_full = true;
+        for (auto &field : this->fields) {
+            if(!field[i]->isTaken()) {
+                is_full = false;
+            }
+        }
+        if (is_full) {
+            for (int j = i; j > 0; j--) {
+                for (auto & field : this->fields) {
+                    field[j] = field[j - 1];
+                }
+            }
+        }
+
+    }
 }
 

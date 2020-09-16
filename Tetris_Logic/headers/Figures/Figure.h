@@ -21,7 +21,7 @@ public:
     friend bool operator ==(const Figure &lhs, const Figure &rhs);
     Figure();
     Figure(Figure const &figure);
-    ~Figure();
+    virtual ~Figure();
     [[nodiscard]] int getWidth() const;
     [[nodiscard]] int getHeight() const;
 protected:

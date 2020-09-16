@@ -58,6 +58,7 @@ private:
     bool check_if_figure_can_be_placed();
     bool move_figure_to(int x_pos, int y_pos);
     void drop_figure_to_bottom();
+    void remove_full_rows();
 };
 
 
