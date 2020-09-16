@@ -34,16 +34,9 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     } else {
         this->is_running = false;
     }
-    //    SDL_SetRenderDrawColor(this->renderer, 0, 255, 0, 255);
-    //    SDL_RenderClear(this->renderer);
-    //    SDL_RenderPresent(this->renderer);
-    //    SDL_Delay(3000);
     this->board = new Board();
     this->tetrisDisplay = TetrisDisplay(this->renderer, this->board);
     this->lastTetrisDownMove = SDL_GetTicks();
-    for(auto& i : this->KEYS) {
-        i = false;
-    }
 }
 
 Game::Game() {
