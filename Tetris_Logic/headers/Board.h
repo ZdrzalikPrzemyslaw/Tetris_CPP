@@ -28,10 +28,11 @@ public:
     static int getYDim();
     std::string to_string();
     friend std::ostream& operator<<(std::ostream& osm, Board board);
-
-private:
     static const int x_dim = 10;
     static const int y_dim = 20;
+    std::shared_ptr<Field> get(int x_pos, int y_pos);
+
+private:
     const std::vector<std::shared_ptr<Figure>> const_possible_figures_vector = {
         std::make_shared<Figure_I>(),
         std::make_shared<Figure_J>(),

@@ -38,7 +38,9 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     //    SDL_RenderClear(this->renderer);
     //    SDL_RenderPresent(this->renderer);
     //    SDL_Delay(3000);
-    this->background = TextureManager::loadTexture("assets/field.png", renderer);
+    this->board = new Board();
+    this->tetrisDisplay = TetrisDisplay(this->renderer, this->board);
+    this->lastTetrisDownMove = SDL_GetTicks();
 }
 
 Game::Game() {
@@ -46,19 +48,21 @@ Game::Game() {
 }
 
 Game::~Game() {
-//    delete this->renderer;
-//    delete this->window;
+    delete board;
 }
 
 void Game::update() {
-    std::cout << counter << std::endl;
-    counter++;
+    int frameTime = SDL_GetTicks() - this->lastTetrisDownMove;
+    if (frameTime > 1000){
+        this->board->step();
+        this->lastTetrisDownMove = SDL_GetTicks();
+    }
+    tetrisDisplay.update();
 }
 
 void Game::render() {
     SDL_RenderClear(this->renderer);
-    // todo add stuff to render
-    SDL_RenderCopy(this->renderer, this->background, NULL, NULL);
+    tetrisDisplay.render();
     SDL_RenderPresent(this->renderer);
 }
 

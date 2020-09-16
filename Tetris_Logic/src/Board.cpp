@@ -205,3 +205,8 @@ std::ostream &operator<<(std::ostream &osm, Board board) {
     return osm;
 }
 
+// todo make safe
+std::shared_ptr<Field> Board::get(int xpos, int ypos) {
+    return this->fields[xpos][ypos];
+}
+

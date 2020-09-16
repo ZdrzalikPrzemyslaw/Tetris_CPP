@@ -10,21 +10,28 @@
 
 class GameObject {
 public:
-    GameObject(const char* texturesheet, SDL_Renderer* renderer);
+    GameObject(const char *texturesheet, SDL_Renderer *renderer, SDL_Rect srcRect, int xpos, int ypos);
+
+    GameObject();
+
     ~GameObject();
 
     void Update();
+
     void Render();
+
+    void setVisibility(bool visible);
 
 private:
 
     int xpos;
     int ypos;
+    bool isvisible;
 
-    SDL_Texture* objTexture;
+    SDL_Texture *objTexture;
     SDL_Rect srcRect;
     SDL_Rect destRect;
-    SDL_Renderer* sdlRenderer;
+    SDL_Renderer *sdlRenderer;
 
 };
 

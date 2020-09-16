@@ -1,7 +1,7 @@
 project(GameLibrary)
 
 set(SOURCE_FILES
-        headers/Game.h src/Game.cpp src/TextureManager.cpp headers/TextureManager.h src/FrameLimiter.cpp headers/FrameLimiter.h src/GameObject.cpp headers/GameObject.h)
+        headers/Game.h src/Game.cpp src/TextureManager.cpp headers/TextureManager.h src/FrameLimiter.cpp headers/FrameLimiter.h src/GameObject.cpp headers/GameObject.h src/TetrisDisplay.cpp headers/TetrisDisplay.h)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 

@@ -5,7 +5,9 @@
 #ifndef TETRIS_GAME_H
 #define TETRIS_GAME_H
 
+#include <Board.h>
 #include "SDL2/SDL.h"
+#include "TetrisDisplay.h"
 #undef main
 
 // todo : https://www.youtube.com/playlist?list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx - tutoriale
@@ -28,11 +30,14 @@ public:
     bool get_is_running() const;
 
 private:
+    Board *board;
     int counter = 0;
     bool is_running;
     SDL_Window *window;
     SDL_Renderer *renderer;
     SDL_Texture *background;
+    TetrisDisplay tetrisDisplay;
+    Uint32 lastTetrisDownMove;
 };
 
 
