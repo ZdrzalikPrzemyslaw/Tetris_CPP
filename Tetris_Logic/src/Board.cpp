@@ -241,8 +241,8 @@ void Board::remove_full_rows() {
             for (auto &field: this->fields) {
                 field[0]->setIsTaken(false);
             }
+            i++;
         }
-
     }
 }
 
