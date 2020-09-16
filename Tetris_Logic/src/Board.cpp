@@ -26,8 +26,8 @@ void Board::moveLeft() {
 
 bool Board::move_down() {
     if (!this->move_figure_to(this->current_figure->get_x_pos(), this->current_figure->get_y_pos() + 1)) {
-        this->set_current_figure_to_next_figure_and_get_new_next_figure();
         remove_full_rows();
+        this->set_current_figure_to_next_figure_and_get_new_next_figure();
         return false;
     }
     return true;
@@ -235,7 +235,7 @@ void Board::remove_full_rows() {
         if (is_full) {
             for (int j = i; j > 0; j--) {
                 for (auto & field : this->fields) {
-                    field[j] = field[j - 1];
+                    field[j]->setIsTaken(field[j - 1]->isTaken());
                 }
             }
             for (auto& field: this->fields) {

@@ -84,12 +84,13 @@ void Game::handle_events() {
             case SDL_QUIT:
                 this->is_running = false;
                 break;
-            case SDL_KEYDOWN:
+            // todo not sure if works
+            case SDL_KEYDOWN: case SDL_KEYUP :
                 this->handleInput(keyboard_state_array);
                 break;
-            case SDL_KEYUP:
-                this->handleInput(keyboard_state_array);
-                break;
+//            case SDL_KEYUP:
+//                this->handleInput(keyboard_state_array);
+//                break;
             default:
                 break;
         }
