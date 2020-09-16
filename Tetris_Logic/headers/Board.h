@@ -14,6 +14,7 @@
 #include "Figures/Figure_S.h"
 #include "Figures/Figure_T.h"
 #include "Figures/Figure_Z.h"
+#include "Static_Board_Constant.h"
 #include "map"
 
 class Board {
@@ -28,8 +29,6 @@ public:
     static int getYDim();
     std::string to_string();
     friend std::ostream& operator<<(std::ostream& osm, Board board);
-    static const int x_dim = 10;
-    static const int y_dim = 20;
     std::shared_ptr<Field> get(int x_pos, int y_pos);
 
     void drop_figure_to_bottom();
@@ -47,7 +46,7 @@ private:
     std::vector<std::shared_ptr<Figure>> current_possible_figures_vector;
     std::shared_ptr<Figure> current_figure;
     std::shared_ptr<Figure> next_figure;
-    std::shared_ptr<Field> fields [x_dim][y_dim];
+    std::shared_ptr<Field> fields [Static_Board_Constant::Static_Board_Constant::x_dim][Static_Board_Constant::Static_Board_Constant::y_dim];
     void set_next_figure();
     Figure get_random_figure();
     void fill_current_possible_figures_vector();

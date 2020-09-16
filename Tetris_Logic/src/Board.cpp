@@ -64,11 +64,11 @@ void Board::set_next_figure() {
 }
 
 int Board::getXDim() {
-    return x_dim;
+    return Static_Board_Constant::x_dim;
 }
 
 int Board::getYDim() {
-    return y_dim;
+    return Static_Board_Constant::y_dim;
 }
 
 Figure Board::get_random_figure() {
@@ -158,12 +158,12 @@ bool Board::check_if_figure_can_be_placed() {
             if (this->current_figure->getShape()[j][i]->isTaken()) {
                 // check if we are in bounds x-axis
                 if (this->current_figure->get_x_pos() + i < 0 ||
-                    this->current_figure->get_x_pos() + i > Board::x_dim - 1)
+                    this->current_figure->get_x_pos() + i > Static_Board_Constant::x_dim - 1)
                     return false;
                     // only check inside the bounds of board
                 else if (j + this->current_figure->get_y_pos() >= 0) {
                     // check if we moved too far (figure pos is at the bottom), if yes return false so this->move_down() can do the work
-                    if (j + this->current_figure->get_y_pos() >= y_dim) {
+                    if (j + this->current_figure->get_y_pos() >= Static_Board_Constant::y_dim) {
                         return false;
                     }
                     // if the position we want to move our figure to is taken return false
@@ -197,7 +197,7 @@ bool Board::move_figure_to(int x_pos, int y_pos) {
 
 std::string Board::to_string() {
     std::string return_string;
-    for (int i = 0; i < y_dim; i++) {
+    for (int i = 0; i < Static_Board_Constant::y_dim; i++) {
         for (auto &field : this->fields) {
             return_string += field[i]->toString();
             return_string += " ";
@@ -225,20 +225,20 @@ std::shared_ptr<Field> Board::get(int xpos, int ypos) {
 // todo test
 // todo after remove full rows display at top breaks.
 void Board::remove_full_rows() {
-    for (int i = y_dim - 1; i >= 0; i--) {
+    for (int i = Static_Board_Constant::y_dim - 1; i >= 0; i--) {
         bool is_full = true;
         for (auto &field : this->fields) {
-            if(!field[i]->isTaken()) {
+            if (!field[i]->isTaken()) {
                 is_full = false;
             }
         }
         if (is_full) {
             for (int j = i; j > 0; j--) {
-                for (auto & field : this->fields) {
+                for (auto &field : this->fields) {
                     field[j]->setIsTaken(field[j - 1]->isTaken());
                 }
             }
-            for (auto& field: this->fields) {
+            for (auto &field: this->fields) {
                 field[0]->setIsTaken(false);
             }
         }

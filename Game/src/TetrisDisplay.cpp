@@ -12,8 +12,8 @@ TetrisDisplay::TetrisDisplay(SDL_Renderer *renderer, Board* board) {
     sdlRect.x = 0;
     sdlRect.y = 0;
     this->sdlRenderer = renderer;
-    for (int i = 0; i < y_dim; i++) {
-        for (int j = 0; j < x_dim; j++) {
+    for (int i = 0; i < Static_Board_Constant::y_dim; i++) {
+        for (int j = 0; j < Static_Board_Constant::x_dim; j++) {
             this->pGameObject[j][i] = GameObject("assets/field.png", this->sdlRenderer, sdlRect, j * 32, i * 32);
         }
     }
@@ -21,8 +21,8 @@ TetrisDisplay::TetrisDisplay(SDL_Renderer *renderer, Board* board) {
 }
 
 void TetrisDisplay::update() {
-    for (int i = 0; i < y_dim; i++) {
-        for (int j = 0; j < x_dim; j++) {
+    for (int i = 0; i < Static_Board_Constant::y_dim; i++) {
+        for (int j = 0; j < Static_Board_Constant::x_dim; j++) {
             this->pGameObject[j][i].setVisibility(this->board->get(j, i)->isTaken());
         }
     }

@@ -18,10 +18,8 @@ public:
     void render();
 
 private:
-    static const int x_dim = 10;
-    static const int y_dim = 20;
     Board *board{};
-    GameObject pGameObject[x_dim][y_dim];
+    GameObject pGameObject[Static_Board_Constant::x_dim][Static_Board_Constant::y_dim];
     SDL_Renderer *sdlRenderer{};
 };
 

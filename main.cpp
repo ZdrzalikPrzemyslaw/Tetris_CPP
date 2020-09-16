@@ -5,7 +5,7 @@
 
 auto main(int argc, char *args[]) -> int {
     Game *game = new Game();
-    game->init("title", 200, 200, 320, 640, false);
+    game->init("title", 200, 200, Static_Board_Constant::x_dim * 32, Static_Board_Constant::y_dim * 32, false);
 
     FrameLimiter frameLimiter(60);
 
