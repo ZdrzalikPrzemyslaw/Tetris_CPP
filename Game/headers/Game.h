@@ -38,6 +38,8 @@ private:
     SDL_Texture *background;
     TetrisDisplay tetrisDisplay;
     Uint32 lastTetrisDownMove;
+    bool KEYS[322];
+    void handleInput(const Uint8 *keyboard_state_array);
 };
 
 

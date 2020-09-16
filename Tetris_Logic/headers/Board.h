@@ -32,6 +32,8 @@ public:
     static const int y_dim = 20;
     std::shared_ptr<Field> get(int x_pos, int y_pos);
 
+    void drop_figure_to_bottom();
+
 private:
     const std::vector<std::shared_ptr<Figure>> const_possible_figures_vector = {
         std::make_shared<Figure_I>(),
@@ -57,7 +59,7 @@ private:
     void set_current_figure_to_next_figure_and_get_new_next_figure();
     bool check_if_figure_can_be_placed();
     bool move_figure_to(int x_pos, int y_pos);
-    void drop_figure_to_bottom();
+
     void remove_full_rows();
 };
 

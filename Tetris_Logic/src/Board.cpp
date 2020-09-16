@@ -223,6 +223,7 @@ std::shared_ptr<Field> Board::get(int xpos, int ypos) {
 }
 
 // todo test
+// todo after remove full rows display at top breaks.
 void Board::remove_full_rows() {
     for (int i = y_dim - 1; i >= 0; i--) {
         bool is_full = true;
@@ -236,6 +237,9 @@ void Board::remove_full_rows() {
                 for (auto & field : this->fields) {
                     field[j] = field[j - 1];
                 }
+            }
+            for (auto& field: this->fields) {
+                field[0]->setIsTaken(false);
             }
         }
 

@@ -41,6 +41,9 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     this->board = new Board();
     this->tetrisDisplay = TetrisDisplay(this->renderer, this->board);
     this->lastTetrisDownMove = SDL_GetTicks();
+    for(auto& i : this->KEYS) {
+        i = false;
+    }
 }
 
 Game::Game() {
@@ -75,17 +78,39 @@ void Game::clean() {
 
 void Game::handle_events() {
     SDL_Event event;
-    SDL_PollEvent(&event);
-    switch (event.type) {
-        case SDL_QUIT:
-            this->is_running = false;
-            break;
-        default:
-            break;
+    const Uint8 *keyboard_state_array = SDL_GetKeyboardState(NULL);
+    while (SDL_PollEvent(&event)) {
+        switch (event.type) {
+            case SDL_QUIT:
+                this->is_running = false;
+                break;
+            case SDL_KEYDOWN:
+                this->handleInput(keyboard_state_array);
+                break;
+            case SDL_KEYUP:
+                this->handleInput(keyboard_state_array);
+                break;
+            default:
+                break;
+        }
     }
-
 }
 
 bool Game::get_is_running() const {
     return this->is_running;
+}
+
+void Game::handleInput(const Uint8 *keyboard_state_array) {
+    if (keyboard_state_array[SDL_SCANCODE_LEFT]) {
+        this->board->moveLeft();
+    }
+    if (keyboard_state_array[SDL_SCANCODE_RIGHT]) {
+        this->board->moveRight();
+    }
+    if (keyboard_state_array[SDL_SCANCODE_DOWN]) {
+        this->board->drop_figure_to_bottom();
+    }
+    if (keyboard_state_array[SDL_SCANCODE_UP]) {
+        this->board->rotate();
+    }
 }

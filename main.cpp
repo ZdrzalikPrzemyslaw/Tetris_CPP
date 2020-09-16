@@ -5,7 +5,7 @@
 
 auto main(int argc, char *args[]) -> int {
     Game *game = new Game();
-    game->init("title", 200, 200, 720/2, 1280/2, false);
+    game->init("title", 200, 200, 320, 640, false);
 
     FrameLimiter frameLimiter(60);
 
