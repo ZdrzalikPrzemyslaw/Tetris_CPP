@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include <iostream>
+#include <SDL_image.h>
 
 void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
     int flags = 0;
@@ -37,6 +38,8 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     this->board = new Board();
     this->tetrisDisplay = TetrisDisplay(this->renderer, this->board);
     this->lastTetrisDownMove = SDL_GetTicks();
+    auto surface = IMG_Load("assets/icon.bmp");
+    SDL_SetWindowIcon(this->window, surface);
 }
 
 Game::Game() {
