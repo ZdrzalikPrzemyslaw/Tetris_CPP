@@ -7,6 +7,7 @@
 #include <chrono>
 #include <iostream>
 #include "Board.h"
+#include "Game_Over_Exception.h"
 
 // todo add game over
 //  add tests for the class, 13.09.2020 refactor untested
@@ -53,7 +54,6 @@ Board::Board() {
         }
     }
     this->set_current_figure_to_next_figure_and_get_new_next_figure();
-    this->init_figure_on_board();
     // todo place figure on board
 }
 
@@ -94,7 +94,10 @@ void Board::fill_current_possible_figures_vector() {
 void Board::init_figure_on_board() {
     // todo: If the starting position for the figure is taken game over
     this->init_figure_pos();
-    this->place_figure();
+    bool has_placed = this->place_figure();
+    if(!has_placed) {
+        throw Game_Over_Exception("Game Over", 10, 0);
+    }
 }
 
 void Board::init_figure_pos() {

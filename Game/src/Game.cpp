@@ -4,6 +4,7 @@
 
 #include "Game.h"
 #include "TextureManager.h"
+#include "Game_Over_Exception.h"
 #include <iostream>
 #include <SDL_image.h>
 
@@ -53,7 +54,12 @@ Game::~Game() {
 void Game::update() {
     int frameTime = SDL_GetTicks() - this->lastTetrisDownMove;
     if (frameTime > this->fall_delay){
-        this->board->step();
+        try {
+            this->board->step();
+        } catch (const Game_Over_Exception& e) {
+            // todo inform user about game over
+            this->is_running = false;
+        }
         this->lastTetrisDownMove = SDL_GetTicks();
     }
     tetrisDisplay.update();
