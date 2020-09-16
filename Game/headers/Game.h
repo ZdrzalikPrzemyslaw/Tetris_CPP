@@ -39,7 +39,9 @@ private:
     TetrisDisplay tetrisDisplay;
     Uint32 lastTetrisDownMove;
     bool KEYS[322];
+    int fall_delay = 1000;
     void handleInput(const Uint8 *keyboard_state_array);
+    void handleInputKeyUp(const Uint8 *keyboard_state_array);
 };
 
 

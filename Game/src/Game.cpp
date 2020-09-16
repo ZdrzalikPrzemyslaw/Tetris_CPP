@@ -56,7 +56,7 @@ Game::~Game() {
 
 void Game::update() {
     int frameTime = SDL_GetTicks() - this->lastTetrisDownMove;
-    if (frameTime > 1000){
+    if (frameTime > this->fall_delay){
         this->board->step();
         this->lastTetrisDownMove = SDL_GetTicks();
     }
@@ -85,12 +85,12 @@ void Game::handle_events() {
                 this->is_running = false;
                 break;
             // todo not sure if works
-            case SDL_KEYDOWN: case SDL_KEYUP :
+            case SDL_KEYDOWN:
                 this->handleInput(keyboard_state_array);
                 break;
-//            case SDL_KEYUP:
-//                this->handleInput(keyboard_state_array);
-//                break;
+            case SDL_KEYUP:
+                this->handleInputKeyUp(keyboard_state_array);
+                break;
             default:
                 break;
         }
@@ -109,9 +109,18 @@ void Game::handleInput(const Uint8 *keyboard_state_array) {
         this->board->moveRight();
     }
     if (keyboard_state_array[SDL_SCANCODE_DOWN]) {
-        this->board->drop_figure_to_bottom();
+        this->fall_delay = 50;
     }
     if (keyboard_state_array[SDL_SCANCODE_UP]) {
         this->board->rotate();
+    }
+    if (keyboard_state_array[SDL_SCANCODE_SPACE]) {
+        this->board->drop_figure_to_bottom();
+    }
+}
+
+void Game::handleInputKeyUp(const Uint8 *keyboard_state_array) {
+    if (!keyboard_state_array[SDL_SCANCODE_DOWN]) {
+        this->fall_delay = 1000;
     }
 }
